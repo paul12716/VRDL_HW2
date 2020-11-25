@@ -36,7 +36,7 @@ In Train.py, we preprocess the data and train our model.
 A pre-trained model is available at:
 - https://drive.google.com/open?id=1yLmjq3JtXi841yXWBxst0coAgR26MNBS 
 The state dict model can be loaded using:
-```bash
+```python
 retinanet = model.resnet50(num_classes=dataset_train.num_classes(),)
 retinanet.load_state_dict(torch.load(PATH_TO_WEIGHTS))
 ```
