@@ -41,30 +41,26 @@ retinanet = model.resnet50(num_classes=dataset_train.num_classes(),)
 retinanet.load_state_dict(torch.load(PATH_TO_WEIGHTS))
 ```
 
-### Data preprocess
-
-We first read training_labels.csv to make a dictionary that correspond a car's class name to a simple int.  
-For example : Ford F-150 Regular Cab 2007 correspond to 108.  
+### Data preprocess 
 
 Then we do image preprocessing in the following order.
 - Normalize
 - Augmentation
 - Resize
-
-After preprocessing, we use dataloader with batch_size=10 to feed training_data into our model.
+And remember to resize the annotation when you resize the corresponding image.  
+After preprocessing, we use dataloader with batch_size=10 to feed training data into our model.
 
 ### Train our model
 
 ```bach
 python train.py --dataset HW2 --HW2_path ../train --depth 50
 ```
-
 We use RetinaNet as backbone network, and modify the class numbers to 10.  
-10 is the total class numbers of our training_data.  
+10 is the total class numbers of our training_data (0~9).  
 
-We use focalLoss as loss function and Adam optimizer, and save model parameters every single epochs in total 100 epochs.  
-Set learning rate = 1e-4  
-The model parameters would be saved in folder saved_models_2/
+We use focalLoss as loss function and Adam optimizer, and save the model every single epochs in total 100 epochs.  
+Set learning rate = 1e-4.  
+The model parameters would be saved in folder saved_models_3/.  
 
 ## Test accuracy by running test.py
 
@@ -75,7 +71,7 @@ python test.py
 For testing data, we first use simliar dataloader to load testing images.  
 Then we import the saved model.
 ```python
-retinanet = torch.load('saved_models_2/HW2_retinanet_xx.pt')
+retinanet = torch.load('saved_models_3/HW2_retinanet_xx.pt')
 retinanet = retinanet.cuda()
 retinanet.eval()
 ```
