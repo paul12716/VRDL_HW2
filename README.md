@@ -79,4 +79,4 @@ retinanet.eval()
 For each testing image, we normalize and resize it.  
 In the end, write image id and predicted result to a .josn file.  
 Upload google drive submission.  
-Best accuracy : .
+Best accuracy : mAP : 0.46387.
